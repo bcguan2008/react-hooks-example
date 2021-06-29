@@ -1,35 +1,35 @@
-import React, {useState,useContext} from 'react';
+import React, { useState, useContext } from 'react';
 
-const initialState = {count:0}     
+const initialState = { count: 0 }
 
 const themes = {
-    light:{
-        foreground:"#000000",
-        background:'#eeeeee'
+    light: {
+        foreground: "#000000",
+        background: '#eeeeee'
     },
-    dark:{
-        foreground:'#ffffff',
-        background:'#222222'
+    dark: {
+        foreground: '#ffffff',
+        background: '#222222'
     }
 };
 
 const ThemeContext = React.createContext({
-    theme:themes.light,
-    toggle:()=>{}
+    theme: themes.light,
+    toggle: () => { }
 });
 
 
-const useReducerExample = function(){
-    
-    const [theme,setTheme] = useState(themes.light);
+const useReducerExample = function () {
+
+    const [theme, setTheme] = useState(themes.light);
 
     return (<div className='title'>
         <p>Demo4 - useContext</p>
         <div className='action'>
-            <ThemeContext.Provider value= {{
+            <ThemeContext.Provider value={{
                 theme,
-                toggle:()=>{
-                    setTheme(theme  === themes.dark ? themes.light:themes.dark);
+                toggle: () => {
+                    setTheme(theme === themes.dark ? themes.light : themes.dark);
                 }
             }}>
                 <Toolbar />
@@ -38,30 +38,30 @@ const useReducerExample = function(){
     </div>)
 }
 
-const Toolbar = ()=>{
+const Toolbar = () => {
     return <Operation />
 }
 
-const Operation = ()=>{
-    const {theme,toggle} = useContext(ThemeContext);
+const Operation = () => {
+    const { theme, toggle } = useContext(ThemeContext);
 
     return (<div>
-        <button 
+        <button
             style={{
-                background:theme.background,
-                color:theme.foreground
+                background: theme.background,
+                color: theme.foreground
             }}
-            onClick={()=>{
+            onClick={() => {
                 toggle()
             }}>light
         </button>
 
-        <button 
+        <button
             style={{
-                background:theme.background,
-                color:theme.foreground
+                background: theme.background,
+                color: theme.foreground
             }}
-            onClick={()=>{
+            onClick={() => {
                 toggle()
             }}>dark
         </button>
